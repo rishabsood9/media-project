@@ -1,0 +1,21 @@
+<h1 style="text-align: center">SIGN UP</h1>
+<form [formGroup]="SignUpForm" (ngSubmit)="onSubmit($event)">
+  <div class="container">
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name" />
+      <mat-hint *ngIf="SignUpForm.controls.name.touched  && SignUpForm.controls.name.errors">Name is required</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email" />
+      <mat-hint *ngIf="SignUpForm.controls.email.touched  && SignUpForm.controls.email.errors">Name is required</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input type="password" matInput placeholder="Password" formControlName="password" />
+      <mat-hint *ngIf="SignUpForm.controls.password.touched  && SignUpForm.controls.password.errors">Name is required</mat-hint>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" [disabled]="!SignUpForm.valid" type="submit">SIGN UP</button>
+  </div>
+</form>

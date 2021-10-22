@@ -1,0 +1,16 @@
+.text-style{
+    position: absolute;
+    bottom: 50%;
+    padding: 50px;
+    margin-left: auto;
+    top: 50%;
+    background: rgb(248, 237, 221);
+}
+
+input[type="textarea"]::first-line {
+    background-color: gold;
+}
+
+mat-list-option[aria-selected="true"] {
+    background: rgba(0, 139, 139, 0.7);
+  }

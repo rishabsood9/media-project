@@ -1,0 +1,27 @@
+<!-- <form>
+  <mat-form-field>
+    <input type="text" matInput [matAutocomplete]="auto" [formControl]="userControl" (input)="onKeypressEvent($event)"/>
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let name of filteredOptions|async" [value]="name">
+        {{ name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form> -->
+
+<form>
+    <input
+      type="text"
+      class="text-style"
+      [formControl]="userControl"
+      matInput
+      [matAutocomplete]="auto"
+      (input)="onKeypressEvent($event)"
+      (change)="onChangeEvent($event)"
+    />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let name of filteredOptions | async" [value]="name">
+        {{ name }}
+      </mat-option>
+    </mat-autocomplete>
+</form>
