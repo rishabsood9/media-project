@@ -4,14 +4,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 const MaterialComponents = [
   MatAutocompleteModule,
   MatInputModule,
   MatFormFieldModule,
   MatSelectModule,
-  MatInputModule,
   MatButtonModule,
+  MatDialogModule,
+  MatGridListModule,
 ];
 
 @NgModule({

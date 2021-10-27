@@ -15,8 +15,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './services/user-service/user.service';
+import { UserLoggedInGaurdService } from './services/user-loggedIn-gaurd/user-loggedIn-gaurd.service';
 
 @NgModule({
+  entryComponents: [SignInComponent, SignUpComponent, SignOutComponent],
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -33,9 +35,9 @@ import { UserService } from './services/user-service/user.service';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [UserService],
+  providers: [UserService,UserLoggedInGaurdService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

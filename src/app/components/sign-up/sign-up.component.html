@@ -1,6 +1,7 @@
-<h1 style="text-align: center">SIGN UP</h1>
+<h1 mat-dialog-title>SIGN UP</h1>
 <form [formGroup]="SignUpForm" (ngSubmit)="onSubmit($event)">
   <div class="container">
+    <mat-dialog-content>
     <mat-form-field>
       <input matInput placeholder="Name" formControlName="name" />
       <mat-hint *ngIf="SignUpForm.controls.name.touched  && SignUpForm.controls.name.errors">Name is required</mat-hint>
@@ -15,7 +16,8 @@
       <input type="password" matInput placeholder="Password" formControlName="password" />
       <mat-hint *ngIf="SignUpForm.controls.password.touched  && SignUpForm.controls.password.errors">Name is required</mat-hint>
     </mat-form-field>
-
-    <button mat-flat-button color="primary" [disabled]="!SignUpForm.valid" type="submit">SIGN UP</button>
+  </mat-dialog-content><br>
+    <button mat-flat-button mat-dialog-close  [disabled]="!SignUpForm.valid" type="submit">SIGN UP</button>
+    <button mat-flat-button mat-dialog-close>CANCEL</button>
   </div>
 </form>

@@ -10,18 +10,18 @@
 </form> -->
 
 <form>
-    <input
-      type="text"
-      class="text-style"
-      [formControl]="userControl"
-      matInput
-      [matAutocomplete]="auto"
-      (input)="onKeypressEvent($event)"
-      (change)="onChangeEvent($event)"
-    />
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let name of filteredOptions | async" [value]="name">
-        {{ name }}
-      </mat-option>
-    </mat-autocomplete>
+  <input
+    type="text"
+    class="text-style"
+    [formControl]="userControl"
+    matInput
+    [matAutocomplete]="auto"
+    (input)="onKeypressEvent($event)"
+    
+  />
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onChangeEvent($event)">
+    <mat-option *ngFor="let name of filteredOptions | async" [value]="name">
+      {{ name }}
+    </mat-option>
+  </mat-autocomplete>
 </form>

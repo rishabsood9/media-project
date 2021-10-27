@@ -5,6 +5,9 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { User } from 'src/app/IModels';
 import { UserService } from 'src/app/services/user-service/user.service';
 
 @Component({
@@ -14,7 +17,12 @@ import { UserService } from 'src/app/services/user-service/user.service';
 })
 export class SignUpComponent implements OnInit {
   SignUpForm!: FormGroup;
-  constructor(private us: UserService, private fb: FormBuilder) {}
+  user!: User;
+  constructor(
+    private userService: UserService,
+    private fb: FormBuilder,
+    private matDialogRef: MatDialogRef<User>
+  ) {}
 
   ngOnInit(): void {
     this.SignUpForm = this.fb.group({
@@ -22,19 +30,25 @@ export class SignUpComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
     });
+    this.user = JSON.parse(localStorage.getItem('user') || '{}');
   }
 
   onSubmit(abc: any) {
     if (this.SignUpForm?.invalid) {
       return;
     } else {
-      this.us.postUsers({
+      const user = {
         userid: this.SignUpForm.get('email')?.value,
         password: this.SignUpForm.get('password')?.value,
         userName: this.SignUpForm.get('name')?.value,
-      });
-      alert('CONGRATULATIONS YOU HAVE SIGNED UP');
-      this.SignUpForm.reset();
+      };
+      if (this.userService.postUsers(user)) {
+        this.matDialogRef.close(user);
+        localStorage.setItem('user', JSON.stringify(user));
+        alert('Congratulations! User Created.');
+      } else {
+        alert('Email already Exits, Kindly Sign up again.');
+      }
     }
   }
 }

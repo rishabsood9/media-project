@@ -39,7 +39,9 @@ export class HomeComponent implements OnInit {
   }
 
   onKeypressEvent(event: any) {
-    if (event.target.value === '@') {
+    const textArr: string[] = event.target.value.split(' ');
+
+    if (textArr[textArr.length - 1] === '@') {
       this.abc();
     } else {
       this.filteredOptions = undefined;
@@ -47,8 +49,8 @@ export class HomeComponent implements OnInit {
   }
 
   onChangeEvent(event: any) {
-    if (event.target.value) {
-      this.filteredOptions = undefined;
+    if (event.option.value) {
+      event.option.value += '  |  ';
     }
   }
 }

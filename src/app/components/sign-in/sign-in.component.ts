@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user-service/user.service';
+import { MatDialogRef } from '@angular/material/dialog';
+import { User } from 'src/app/IModels';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,13 +11,19 @@ import { UserService } from 'src/app/services/user-service/user.service';
 })
 export class SignInComponent implements OnInit {
   SignInForm!: FormGroup;
-  constructor(private us: UserService) {}
 
+  constructor(
+    private matDialogRef: MatDialogRef<User>,
+    private us: UserService
+  ) {}
+  user!: User;
   ngOnInit(): void {
     this.SignInForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
     });
+
+    this.user = JSON.parse(localStorage.getItem('user') || '{}');
   }
 
   onSubmit(abc: any) {
@@ -30,7 +38,9 @@ export class SignInComponent implements OnInit {
             a.password === this.SignInForm.get('password')?.value
         );
         if (foundUser) {
+          this.matDialogRef.close(foundUser);
           alert('SUCCESS');
+          localStorage.setItem('user', JSON.stringify(foundUser));
         } else {
           alert('INVALID USERNAME OR PASSWORD');
         }
