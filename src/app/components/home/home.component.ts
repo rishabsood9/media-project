@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
       .map((a) => a.userName);
   }
 
-  abc() {
+  autoComplete() {
     if (this.filteredOptions) {
       this.filteredOptions = undefined;
     } else {
@@ -42,7 +42,8 @@ export class HomeComponent implements OnInit {
     const textArr: string[] = event.target.value.split(' ');
 
     if (textArr[textArr.length - 1] === '@') {
-      this.abc();
+      this.autoComplete();
+      
     } else {
       this.filteredOptions = undefined;
     }
@@ -50,7 +51,7 @@ export class HomeComponent implements OnInit {
 
   onChangeEvent(event: any) {
     if (event.option.value) {
-      event.option.value += '  |  ';
+      event.option.value = event.option.value + '  |  ';
     }
   }
 }

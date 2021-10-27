@@ -6,6 +6,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 const MaterialComponents = [
   MatAutocompleteModule,
@@ -15,6 +16,7 @@ const MaterialComponents = [
   MatButtonModule,
   MatDialogModule,
   MatGridListModule,
+  MatSnackBarModule
 ];
 
 @NgModule({

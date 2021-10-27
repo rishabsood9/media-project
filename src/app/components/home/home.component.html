@@ -9,17 +9,60 @@
   </mat-form-field>
 </form> -->
 
+<div class="home-section">
+  <h1 style="font-weight: bold; font-family: auto">RISHAB MEDIA COMPANY</h1>
+  <h3 style="color: black">
+    Welcome to the world's most renowned media agency. We have the most
+    professional photographers for any kind of event or photoshoot <br />
+    We are known for our prestigious photoshoots all over the globe.<br />
+    <b>Mr. Rishab Sood</b> CEO of the company has photoshoot several times for
+    the <b>forbes</b> magzine cover photo.<br />
+    Really exited to host you, Kindly Contact with us on the email ID
+    <b>xyz@media.com</b>
+  </h3>
+</div>
+<img
+  style="display: block; margin-left: auto; margin-right: auto; width: 50%"
+  src="../../../assets/images/view-3.jpg"
+  alt=""
+/>
+<img
+  style="
+    display: block;
+    width: 34%;
+    position: absolute;
+    top: 328px;
+    font-size: 18px;
+  "
+  src="../../../assets/images/view-1.jpg"
+  alt=""
+/>
+<img
+  style="
+    display: block;
+    width: 34%;
+    position: absolute;
+    top: 328px;
+    font-size: 18px;
+    left: 1022px;
+  "
+  src="../../../assets/images/view-2.jpg"
+  alt=""
+/>
 <form>
   <input
-    type="text"
-    class="text-style"
+    type="textarea"
+    class="textarea-style"
     [formControl]="userControl"
     matInput
     [matAutocomplete]="auto"
     (input)="onKeypressEvent($event)"
-    
+    id="textarea"
   />
-  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onChangeEvent($event)">
+  <mat-autocomplete
+    #auto="matAutocomplete"
+    (optionSelected)="onChangeEvent($event)"
+  >
     <mat-option *ngFor="let name of filteredOptions | async" [value]="name">
       {{ name }}
     </mat-option>
