@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-about',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private snakBar: MatSnackBar) { }
 
   ngOnInit(): void {
+  }
+
+  onContactClick(){
+    this.snakBar.open(
+      'contact us on contact@media.com',
+      '',
+      { duration: 3000 }
+    );
   }
 
 }

@@ -5,7 +5,7 @@ import { User } from 'src/app/IModels';
   providedIn: 'root',
 })
 export class UserService {
-  usersDB = [
+  usersDB: User[] = [
     { userid: 'tom@media.com', password: 'abc123', userName: 'tom' },
     { userid: 'jeffy@media.com', password: 'abc123', userName: 'jeffy' },
     { userid: 'jerry@media.com', password: 'abc123', userName: 'jerry' },

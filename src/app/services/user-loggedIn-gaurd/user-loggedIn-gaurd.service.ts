@@ -21,6 +21,7 @@ export class UserLoggedInGaurdService implements CanActivate {
     if (user) {
       return true;
     } else {
+      alert('Kindly login or signup to access gallery!!')
       this.router.navigate(['/home']);
       return false;
     }
