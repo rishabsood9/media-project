@@ -37,7 +37,7 @@ import { UserLoggedInGaurdService } from './services/user-loggedIn-gaurd/user-lo
     MaterialModule,
     ReactiveFormsModule,
   ],
-  providers: [UserService,UserLoggedInGaurdService],
+  providers: [UserService, UserLoggedInGaurdService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

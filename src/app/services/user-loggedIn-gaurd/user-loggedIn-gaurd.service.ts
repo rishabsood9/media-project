@@ -6,7 +6,6 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -21,8 +20,10 @@ export class UserLoggedInGaurdService implements CanActivate {
     if (user) {
       return true;
     } else {
-      alert('Kindly login or signup to access gallery!!')
-      this.router.navigate(['/home']);
+      alert('Kindly login or signup to access gallery!!');
+      this.router.navigate(['/home']).then(() => {
+        window.location.reload();
+      });
       return false;
     }
   }

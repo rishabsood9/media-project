@@ -14,12 +14,16 @@ export class HomeComponent implements OnInit {
   constructor(private us: UserService) {}
   usersDB: User[] = [];
   userControl = new FormControl();
+  addCSS: boolean = false;
+  innerTextBoxValue = '';
+  addedUserNames: string[] = [];
+  allUsers: User[] = [];
 
   filteredOptions: Observable<string[]> | undefined;
   ngOnInit(): void {
     this.usersDB = this.us.getUsers();
+    this.allUsers = [...this.usersDB];
   }
-
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.usersDB
@@ -28,30 +32,67 @@ export class HomeComponent implements OnInit {
   }
 
   autoComplete() {
-    if (this.filteredOptions) {
-      this.filteredOptions = undefined;
-    } else {
-      this.filteredOptions = this.userControl.valueChanges.pipe(
-        startWith(''),
-        map((value) => this._filter(value))
-      );
+    this.filteredOptions = this.userControl.valueChanges.pipe(
+      startWith(''),
+      map((value) => {
+        return this._filter(value);
+      })
+    );
+  }
+
+  removeByAttr(arr: any, attr: string, value: string | undefined) {
+    var i = arr.length;
+    while (i--) {
+      if (
+        arr[i] &&
+        arr[i].hasOwnProperty(attr) &&
+        arguments.length > 2 &&
+        arr[i][attr] === value
+      ) {
+        arr.splice(i, 1);
+      }
     }
+    return arr;
   }
 
   onKeypressEvent(event: any) {
-    const textArr: string[] = event.target.value.split(' ');
+    if (event.target.value) {
+      const textArr: string[] = event.target.value.split(' ');
+      let lastItem = '';
 
-    if (textArr[textArr.length - 1] === '@') {
-      this.autoComplete();
-      
+      this.allUsers.forEach((user) => {
+        if (!(this.usersDB.includes(user) || textArr.includes(user.userName))) {
+          this.usersDB.push(user);
+        }
+      });
+      if (textArr[textArr.length - 1] === '@') {
+        this.autoComplete();
+        lastItem = textArr[textArr.length - 1];
+      } else {
+        this.filteredOptions = undefined;
+      }
+      this.innerTextBoxValue = event.target.value;
     } else {
-      this.filteredOptions = undefined;
+      this.addCSS = false;
     }
   }
 
   onChangeEvent(event: any) {
     if (event.option.value) {
-      event.option.value = event.option.value + '  |  ';
+      this.removeByAttr(this.usersDB, 'userName', event.option.value);
+      this.addCSS = true;
+      var textValue: any = document.getElementById('textarea');
+      this.innerTextBoxValue = this.innerTextBoxValue
+        .split(' ')
+        .map((t) => {
+          if (t.charAt(0) === '@') {
+            return t.substring(1);
+          } else {
+            return t;
+          }
+        })
+        .join(' ');
+      textValue.value = this.innerTextBoxValue + textValue.value + ' | ';
     }
   }
 }

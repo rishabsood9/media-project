@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
   }
 
   signInUser(user: User) {
-    this.router.navigate(['/gallery']);
+    this.router.navigate(['/home']);
     this.isLoggedIn = true;
     this.userName = user.userName;
   }

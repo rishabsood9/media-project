@@ -12,7 +12,7 @@
     border: double;
 }
 
-input[type="textarea"]::first-line {
+.yourInputElement::first-line {
     background-color: gold;
 }
 

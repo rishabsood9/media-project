@@ -21,38 +21,11 @@
     <b>xyz@media.com</b>
   </h3>
 </div>
-<!-- <img
-  style="display: block; margin-left: auto; margin-right: auto; width: 50%"
-  src="../../../assets/images/view-3.jpg"
-  alt=""
-/>
-<img
-  style="
-    display: block;
-    width: 34%;
-    position: absolute;
-    top: 328px;
-    font-size: 18px;
-  "
-  src="../../../assets/images/view-1.jpg"
-  alt=""
-/>
-<img
-  style="
-    display: block;
-    width: 34%;
-    position: absolute;
-    top: 328px;
-    font-size: 18px;
-    left: 1022px;
-  "
-  src="../../../assets/images/view-2.jpg"
-  alt=""
-/> -->
+
 <form>
   <input
     type="textarea"
-    class="textarea-style"
+    [ngClass]="addCSS ? 'textarea-style yourInputElement' : 'textarea-style'"
     [formControl]="userControl"
     matInput
     [matAutocomplete]="auto"
