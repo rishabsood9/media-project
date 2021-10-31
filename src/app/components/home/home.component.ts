@@ -23,6 +23,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.usersDB = this.us.getUsers();
     this.allUsers = [...this.usersDB];
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.us.postUsers(JSON.parse(user));
+    }
   }
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
