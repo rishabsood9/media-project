@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { GalleryComponent } from './gallery.component';
 
@@ -8,7 +9,8 @@ describe('GalleryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GalleryComponent ]
+      declarations: [ GalleryComponent ],
+      providers: [{ provide: MatSnackBar, useValue: { open: () => {} } }],
     })
     .compileComponents();
   });

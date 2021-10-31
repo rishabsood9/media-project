@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { AboutComponent } from './about.component';
 
@@ -8,9 +9,10 @@ describe('AboutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AboutComponent ]
-    })
-    .compileComponents();
+      declarations: [AboutComponent],
+      imports: [],
+      providers: [{ provide: MatSnackBar, useValue: { open: () => {} } }],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -21,5 +23,10 @@ describe('AboutComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should onContactClick', () => {
+    component.onContactClick();
+    spyOn(component, 'onContactClick').and.callThrough();
   });
 });

@@ -1,8 +1,8 @@
-.foot-style{
-    margin: 0;
-    position: sticky;
-    bottom: 0;
-    width: 100%;
-    background: lightgrey;
-    padding: 20px;    
+.foot-style {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  background: lightgrey;
+  padding: 20px;
+  top: 100%;
 }

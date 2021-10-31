@@ -14,7 +14,7 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private matDialogRef: MatDialogRef<User>,
-    private us: UserService
+    private userService: UserService
   ) {}
   user!: User;
   ngOnInit(): void {
@@ -30,7 +30,7 @@ export class SignInComponent implements OnInit {
     if (this.SignInForm?.invalid) {
       return;
     } else {
-      let allusers = this.us.getUsers();
+      let allusers = this.userService.getUsers();
       if (this.SignInForm.get('email')?.value) {
         let foundUser = allusers.find(
           (a) =>

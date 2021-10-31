@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user-service/user.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private us: UserService) {}
+  constructor(private userService: UserService) {}
   usersDB: User[] = [];
   userControl = new FormControl();
   addCSS: boolean = false;
@@ -21,42 +21,12 @@ export class HomeComponent implements OnInit {
 
   filteredOptions: Observable<string[]> | undefined;
   ngOnInit(): void {
-    this.usersDB = this.us.getUsers();
+    this.usersDB = this.userService.getUsers();
     this.allUsers = [...this.usersDB];
     const user = localStorage.getItem('user');
     if (user) {
-      this.us.postUsers(JSON.parse(user));
+      this.userService.postUsers(JSON.parse(user));
     }
-  }
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.usersDB
-      .filter((user) => user.userName.toLowerCase().includes(filterValue))
-      .map((a) => a.userName);
-  }
-
-  autoComplete() {
-    this.filteredOptions = this.userControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => {
-        return this._filter(value);
-      })
-    );
-  }
-
-  removeByAttr(arr: any, attr: string, value: string | undefined) {
-    var i = arr.length;
-    while (i--) {
-      if (
-        arr[i] &&
-        arr[i].hasOwnProperty(attr) &&
-        arguments.length > 2 &&
-        arr[i][attr] === value
-      ) {
-        arr.splice(i, 1);
-      }
-    }
-    return arr;
   }
 
   onKeypressEvent(event: any) {
@@ -98,5 +68,36 @@ export class HomeComponent implements OnInit {
         .join(' ');
       textValue.value = this.innerTextBoxValue + textValue.value + ' | ';
     }
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.usersDB
+      .filter((user) => user.userName.toLowerCase().includes(filterValue))
+      .map((a) => a.userName);
+  }
+
+  private autoComplete() {
+    this.filteredOptions = this.userControl.valueChanges.pipe(
+      startWith(''),
+      map((value) => {
+        return this._filter(value);
+      })
+    );
+  }
+
+  private removeByAttr(arr: any, attr: string, value: string | undefined) {
+    var i = arr.length;
+    while (i--) {
+      if (
+        arr[i] &&
+        arr[i].hasOwnProperty(attr) &&
+        arguments.length > 2 &&
+        arr[i][attr] === value
+      ) {
+        arr.splice(i, 1);
+      }
+    }
+    return arr;
   }
 }

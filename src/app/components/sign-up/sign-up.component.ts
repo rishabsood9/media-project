@@ -6,7 +6,6 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { User } from 'src/app/IModels';
 import { UserService } from 'src/app/services/user-service/user.service';
 
@@ -20,12 +19,11 @@ export class SignUpComponent implements OnInit {
   user!: User;
   constructor(
     private userService: UserService,
-    private fb: FormBuilder,
     private matDialogRef: MatDialogRef<User>
   ) {}
 
   ngOnInit(): void {
-    this.SignUpForm = this.fb.group({
+    this.SignUpForm = new FormGroup({
       name: new FormControl('', Validators.required),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
@@ -33,7 +31,7 @@ export class SignUpComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
   }
 
-  onSubmit(abc: any) {
+  onSubmit() {
     if (this.SignUpForm?.invalid) {
       return;
     } else {

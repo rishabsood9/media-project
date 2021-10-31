@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 import { HeaderComponent } from './header.component';
 
@@ -8,9 +11,12 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
-    })
-    .compileComponents();
+      declarations: [HeaderComponent],
+      providers: [
+        { provide: MatDialog, useValue: { open: () => {} } },
+        { provide: Router, useValue: { navigate: () => {} } },
+      ],
+    });
   });
 
   beforeEach(() => {
@@ -20,11 +26,6 @@ describe('HeaderComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('should create', () => {
-    component .openSignInBox();
     expect(component).toBeTruthy();
   });
 });
