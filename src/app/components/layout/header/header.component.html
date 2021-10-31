@@ -31,21 +31,21 @@
       <ul class="navbar-nav">
         <li
           routerLinkActive="active"
-          class="nav-item active"
+          class="nav-item active cursor-pointer"
           *ngIf="!isLoggedIn"
         >
           <a class="nav-link" (click)="openSignInBox()">Sign In</a>
         </li>
         <li
           routerLinkActive="active"
-          class="nav-item active"
+          class="nav-item active cursor-pointer"
           *ngIf="!isLoggedIn"
         >
           <a class="nav-link" (click)="openSignUpBox()">Sign Up</a>
         </li>
         <li
           routerLinkActive="active"
-          class="nav-item active"
+          class="nav-item active cursor-pointer"
           *ngIf="isLoggedIn"
         >
           <a class="nav-link" (click)="openSignOutBox()">Sign Out</a>
