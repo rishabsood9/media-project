@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'signUp', component: SignUpComponent },
   { path: 'signOut', component: SignOutComponent },
   { path: '', component: HomeComponent },
+  { path: '**', component: HomeComponent },
 ];
 
 @NgModule({
